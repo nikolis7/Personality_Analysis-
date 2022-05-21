@@ -36,7 +36,7 @@ M = FOREACH (GROUP A All) GENERATE AVG(A.MntWines) as avg_mnt;
 C = FOREACH A GENERATE  *, (MntWines> ROUND(M.avg_mnt*1.5)? 'Yes' : 'No') as Class;
 G1 = FILTER C BY Class=='Yes';
 S = FOREACH G1 GENERATE ID,Age,Education,Marital_Status,Income,MntWines;
-O = ORDER S BY MntWines DESC;
-R = RANK O BY MntWines DESC,ID;
+O = ORDER S BY MntWines DESC, Income DESC;
+R = RANK O BY MntWines DESC,Income DESC,ID;
 
 DUMP R;
