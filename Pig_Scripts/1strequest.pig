@@ -37,8 +37,11 @@ I = FILTER F BY Income >0;
 M = FOREACH (GROUP I All) GENERATE AVG(I.Income) as avg_mnt;
 C = FOREACH I GENERATE  *, (Income> ROUND(M.avg_mnt*1.75)? 'Yes' : 'No') as incomeoutliers;
 G1 = FILTER C BY incomeoutliers=='No';
-dump G1;
+S = FOREACH G1 GENERATE ID,Year_Birth,Education,Marital_Status,Income,Kidhome,Teenhome,Dt_Customer,Recency,MntWines,MntFruits,MntMeatProducts,MntFishProducts,MntSweetProducts,MntGoldProds,NumDealsPurchases,
+NumWebPurchases,NumCatalogPurchases,NumStorePurchases,NumWebVisitsMonth,AcceptedCmp3,AcceptedCmp4,AcceptedCmp5,AcceptedCmp1,AcceptedCmp2,Complain,Response,Age;
 
+DUMP S;
+STORE S INTO '1st_output' USING PigStorage (',');
 
 
 
