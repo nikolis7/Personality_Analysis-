@@ -29,7 +29,7 @@ data = LOAD 'personality_analysis_clean.csv' USING PigStorage(',') AS (
 	Response:int,
 	Age:int
 	);
-groupedu = GROUP data BY Education;
-count = FOREACH groupedu GENERATE group as education_status, COUNT(data) as cnt;
-order_data = ORDER count BY education_status DESC;
-dump order_data;
+G = GROUP data BY Education;
+C = FOREACH G GENERATE group AS education_status, COUNT(data) AS cnt;
+O = ORDER C BY education_status ASC;
+dump O;
