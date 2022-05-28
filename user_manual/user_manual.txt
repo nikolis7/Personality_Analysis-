@@ -1,0 +1,77 @@
+The operating system used for this project was Ubuntu 20.04.4 LTS.
+
+# Installation of Hadoop in Stand-Alone Mode (version 3.3.0)
+
+ 
+ Step-1 - Installing Java 
+
+	sudo su -> to run on root 
+
+	apt update
+      apt-get install openjdk-8-jdk 
+	
+ Step-2 - Installing Hadoop 
+
+	wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1.tar.gz
+
+	wget https://downloads.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1.tar.gz.sha512
+
+
+	shasum -a 512 hadoop-3.3.1.tar.gz  (COMPARE THE VERIFICATION)
+	cat hadoop-3.3.1.tar.gz.sha512
+	
+
+	tar -xzvf hadoop-3.3.1.tar.gz (Use the tar command with the -x flag to extract, -z to uncompress, -v for verbose output, and -f to specify that you’re extracting from a file.)
+	
+	mv hadoop-3.3.1 /usr/local/hadoop (Move the extracted files in /usr/local)
+
+Step-3 - Configure Hadoop 
+	
+	nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+		
+		export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ 
+		
+Step-4 - Running Hadoop 
+
+	/usr/local/hadoop/bin/hadoop
+
+
+# Installation of Pig 
+
+Step-1 Download Apache Pig 
+	wget https://downloads.apache.org/pig/pig-0.17.0/pig-0.17.0.tar.gz
+
+	
+Step-2 - Extract the Apache Pig tar file 
+
+	tar -xvf pig-0.17.0.tar.gz 
+
+Step-3 Set the Environment Variables (in order to access pig from any directory)
+
+	nano .bashrc  (edit the .bashrc file)
+
+	
+	set the following environmental variables 
+
+	export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+	export PATH=${JAVA_HOME}/bin:${PATH}
+	export HADOOP_CLASSPATH=${JAVA_HOME}/lib/tools.jar
+	export HADOOP_HOME="/usr/local/hadoop_home"
+	export HADOOP_CONF_DIR="/usr/local/hadoop_home/etc/hadoop"
+	export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+	export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+
+
+
+	source .bashrc
+
+
+
+Ready to run pig either on local or mapreduce mode 
+
+	(a) Local mode : pig -x local
+
+	(b) MapReduce mode: pig -x mapreduce 
+
+
+
