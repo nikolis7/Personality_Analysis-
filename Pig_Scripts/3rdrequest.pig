@@ -1,5 +1,4 @@
 data = LOAD 'personality_analysis_clean.csv' USING PigStorage(',') AS (
-
     Index:int,
     ID:int,
     Year_Birth:int,
