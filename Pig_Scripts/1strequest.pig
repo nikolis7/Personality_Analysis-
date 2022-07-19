@@ -16,14 +16,14 @@ data = LOAD 'personality_analysis.csv' USING PigStorage(';') AS (
 	MntGoldProds:int,
 	NumDealsPurchases:int,
 	NumWebPurchases:int,
-    NumCatalogPurchases:int,
+        NumCatalogPurchases:int,
 	NumStorePurchases:int,
 	NumWebVisitsMonth:int,
 	AcceptedCmp3:int,
 	AcceptedCmp4:int,
 	AcceptedCmp5:int,
 	AcceptedCmp1:int,
-    AcceptedCmp2:int,
+        AcceptedCmp2:int,
 	Complain:int,
 	Response:int
 	);
